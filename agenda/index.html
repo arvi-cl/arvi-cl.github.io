@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Agenda · ARVI Happy</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2f8fe8;--red:#ee3b34;--green:#5fb73a;--yellow:#ffc21a;--pink:#f58ab8;--purple:#3b2380;--bg:#fff8e6;--card:#fff;--text:#2a1c5c;--muted:#6b6290;--line:#ecdfb8}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 8% 0,rgba(245,138,184,.28),transparent 26%),var(--bg);color:var(--text);font:500 16px/1.45 Nunito,system-ui,sans-serif}
+h1,h2,h3,button,.logo{font-family:"Baloo 2",sans-serif}
+header{background:linear-gradient(160deg,#4aa4f5,var(--blue) 46%,#6a4ad4);color:#fff;padding:22px 16px 28px;text-align:center}
+.logo{display:inline-block;background:#fff;color:var(--purple);border-radius:22px;padding:6px 16px;font-weight:800;font-size:28px;box-shadow:0 4px 0 #2a1860}
+.logo i{font-style:normal}.logo i:nth-child(1){color:#ffc21a}.logo i:nth-child(2){color:#5fb73a}.logo i:nth-child(3){color:#2f8fe8}.logo i:nth-child(4){color:#ee3b34}
+header p{margin:10px auto 0;max-width:42ch;font-weight:700}
+.kids{width:min(220px,58vw);margin:8px auto 0;display:block}
+main{max-width:980px;margin:-18px auto 40px;padding:0 14px}
+.card{background:var(--card);border:3px solid var(--line);border-radius:22px;padding:16px;margin:0 0 16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.nav{display:flex;gap:8px;align-items:center}
+button,input,select{font:inherit}
+.btn{border:0;border-radius:999px;padding:10px 16px;font-weight:800;cursor:pointer;background:var(--blue);color:#fff;box-shadow:0 4px 0 #1b62a8}
+.btn.alt{background:#fff;color:var(--purple);border:2px solid var(--line);box-shadow:none}
+.btn.red{background:var(--red);box-shadow:0 4px 0 #a8201b}
+.btn.yellow{background:var(--yellow);color:var(--purple);box-shadow:0 4px 0 #c58f00}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.legend span,.tag{border-radius:999px;padding:4px 10px;font-size:13px;font-weight:800;background:var(--bg)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.dow{text-align:center;font-size:12px;font-weight:800;color:var(--muted)}
+.day{min-height:86px;border:2px solid var(--line);border-radius:14px;background:#fff;padding:6px;text-align:left;cursor:pointer}
+.day.off{opacity:.35;cursor:default}
+.day.on{border-color:var(--purple);box-shadow:0 0 0 3px rgba(59,35,128,.15)}
+.day b{display:block;font-size:16px}
+.day small{display:block;color:var(--muted);font-size:11px}
+.pips{display:flex;gap:3px;margin-top:6px}
+.pip{width:8px;height:8px;border-radius:50%;background:#e7e0c8}
+.pip.busy{background:var(--red)}
+.pip.free{background:var(--green)}
+.prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.price{background:var(--bg);border-radius:14px;padding:10px}
+.price b{display:block;font-size:20px}
+.slots{display:grid;gap:10px}
+.slot{border:2px solid var(--line);border-radius:16px;padding:12px}
+.slot.busy{border-color:var(--pink);background:#fff5fa}
+.slot h3{margin:0 0 4px}
+form{display:grid;gap:8px;margin-top:8px}
+label{font-size:13px;font-weight:800;color:var(--muted)}
+input{border:2px solid var(--line);border-radius:12px;padding:10px;background:#fff;color:var(--text)}
+.note{color:var(--muted);font-size:13px}
+.admin{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ok{color:#1d7a32;font-weight:800}
+.warn{color:#9a2464;font-weight:800}
+@media(max-width:640px){.day{min-height:64px;padding:4px}.day small{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" aria-label="ARVI Happy"><i>A</i><i>R</i><i>V</i><i>I</i> Happy</div>
+  <p>Agenda de cumpleaños · Metro Observatorio · 3 horas de uso</p>
+  <img class="kids" src="../happy/ninos.png" alt="Niños de ARVI Happy">
+</header>
+<main>
+  <section class="card">
+    <div class="row">
+      <div>
+        <h1 style="margin:0">Calendario de reservas</h1>
+        <p class="note">Valores vigentes del 6 de septiembre al 31 de diciembre de 2026. Lo que reserve un administrador se ve para todos.</p>
+      </div>
+      <div class="admin" id="adminBox"></div>
+    </div>
+    <div class="prices">
+      <div class="price"><span>Lunes a viernes</span><b>$150.000</b></div>
+      <div class="price"><span>Sábado, domingo y festivos AM</span><b>$180.000</b></div>
+      <div class="price"><span>Sábado, domingo y festivos</span><b>$200.000</b></div>
+    </div>
+  </section>
+  <section class="card">
+    <div class="row">
+      <div class="nav">
+        <button class="btn alt" id="prev" type="button">←</button>
+        <h2 id="title" style="margin:0">Septiembre 2026</h2>
+        <button class="btn alt" id="next" type="button">→</button>
+      </div>
+      <button class="btn alt" id="reload" type="button">Actualizar</button>
+    </div>
+    <div class="legend"><span>Verde: libre</span><span>Rojo: reservado</span><span>AM 11:00–14:00</span><span>PM 16:00–19:00</span><span>Alternativa 17:00–20:00</span></div>
+    <div class="cal" id="cal" style="margin-top:12px"></div>
+  </section>
+  <section class="card" id="detail">
+    <h2>Elige un día</h2>
+    <p class="note">Ahí puedes ver los horarios y, si eres administrador, agendar nombre, celular y abono.</p>
+  </section>
+</main>
+<script>
+const PASS="Arvi232342";
+const API="https://crudcrud.com/api/aa4864432f3d41648da177a620d5b130/bookings";
+const SLOTS=[
+  {id:"AM",label:"AM",hours:"11:00 a 14:00"},
+  {id:"PM",label:"PM",hours:"16:00 a 19:00"},
+  {id:"ALT",label:"Opción alternativa",hours:"17:00 a 20:00"}
+];
+const HOLIDAYS=new Set(["2026-01-01","2026-04-03","2026-04-04","2026-05-01","2026-05-21","2026-06-21","2026-06-29","2026-07-16","2026-08-15","2026-09-18","2026-09-19","2026-10-12","2026-10-31","2026-11-01","2026-12-08","2026-12-25"]);
+const MONTHS=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const DOW=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
+let cursor=new Date(2026,8,1), selected="", bookings=[], admin=sessionStorage.getItem("arviAdmin")==="1";
+
+const money=n=>"$"+Number(n||0).toLocaleString("es-CL");
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const parse=s=>{const p=s.split("-");return new Date(+p[0],+p[1]-1,+p[2])};
+function kind(date){
+  const d=parse(date), day=d.getDay();
+  return day===0||day===6||HOLIDAYS.has(date)?"festivo":"semana";
+}
+function price(date,slot){
+  if(kind(date)==="semana") return 150000;
+  return slot==="AM"?180000:200000;
+}
+function inSeason(date){return date>="2026-09-06"&&date<="2026-12-31"}
+
+async function load(){
+  const r=await fetch(API);
+  bookings=await r.json();
+  draw();
+  if(selected) show(selected);
+}
+async function save(item){
+  const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(item)});
+  if(!r.ok) throw new Error("No se pudo guardar");
+  return r.json();
+}
+async function remove(id){
+  const r=await fetch(API+"/"+id,{method:"DELETE"});
+  if(!r.ok) throw new Error("No se pudo eliminar");
+}
+async function update(id,item){
+  const r=await fetch(API+"/"+id,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(item)});
+  if(!r.ok) throw new Error("No se pudo actualizar");
+}
+
+function drawAdmin(){
+  const box=document.getElementById("adminBox");
+  box.innerHTML=admin
+    ?'<span class="ok">Administrador</span><button class="btn alt" id="logout" type="button">Salir</button>'
+    :'<input id="pass" type="password" placeholder="Clave de administrador" autocomplete="current-password"><button class="btn" id="login" type="button">Entrar</button>';
+  const login=document.getElementById("login");
+  if(login) login.onclick=()=>{
+    if(document.getElementById("pass").value===PASS){admin=true;sessionStorage.setItem("arviAdmin","1");drawAdmin();if(selected)show(selected)}
+    else alert("Clave incorrecta");
+  };
+  const logout=document.getElementById("logout");
+  if(logout) logout.onclick=()=>{admin=false;sessionStorage.removeItem("arviAdmin");drawAdmin();if(selected)show(selected)};
+}
+
+function draw(){
+  document.getElementById("title").textContent=MONTHS[cursor.getMonth()].replace(/^./,c=>c.toUpperCase())+" "+cursor.getFullYear();
+  const first=new Date(cursor.getFullYear(),cursor.getMonth(),1);
+  let start=(first.getDay()+6)%7;
+  const days=new Date(cursor.getFullYear(),cursor.getMonth()+1,0).getDate();
+  let html=DOW.map(d=>'<div class="dow">'+d+'</div>').join("");
+  for(let i=0;i<start;i++) html+='<div></div>';
+  for(let d=1;d<=days;d++){
+    const date=iso(new Date(cursor.getFullYear(),cursor.getMonth(),d));
+    const ok=inSeason(date);
+    const taken=SLOTS.filter(s=>bookings.some(b=>b.date===date&&b.slot===s.id));
+    html+=`<button class="day${ok?"":" off"}${date===selected?" on":""}" data-date="${date}" ${ok?"":"disabled"}><b>${d}</b><small>${kind(date)==="festivo"?"Festivo":"Semana"}</small><div class="pips">${SLOTS.map(s=>`<i class="pip ${taken.some(x=>x.id===s.id)?"busy":"free"}" title="${s.label}"></i>`).join("")}</div></button>`;
+  }
+  document.getElementById("cal").innerHTML=html;
+  document.querySelectorAll(".day[data-date]").forEach(b=>b.onclick=()=>show(b.dataset.date));
+}
+
+function booking(date,slot){return bookings.find(b=>b.date===date&&b.slot===slot)}
+function show(date){
+  selected=date; draw();
+  const d=parse(date);
+  const label=d.toLocaleDateString("es-CL",{weekday:"long",day:"numeric",month:"long"});
+  const overlap=booking(date,"PM")&&booking(date,"ALT");
+  document.getElementById("detail").innerHTML=`<h2 style="margin-top:0;text-transform:capitalize">${label}</h2>
+    <p class="note">${kind(date)==="festivo"?"Sábado, domingo o festivo":"Lunes a viernes"} · valores por 3 horas</p>
+    ${overlap?'<p class="warn">Ojo: PM y la opción alternativa se cruzan entre 17:00 y 19:00.</p>':""}
+    <div class="slots">${SLOTS.map(s=>slotCard(date,s)).join("")}</div>`;
+  document.querySelectorAll("[data-save]").forEach(f=>f.onsubmit=onSave);
+  document.querySelectorAll("[data-del]").forEach(b=>b.onclick=onDel);
+  document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=onEdit);
+}
+function slotCard(date,s){
+  const b=booking(date,s.id), val=price(date,s.id);
+  if(b){
+    const rest=Math.max(val-Number(b.abono||0),0);
+    return `<article class="slot busy"><h3>${s.label} · ${s.hours}</h3><p><b>${b.name}</b> · reservado</p>
+      ${admin?`<p>Celular: ${b.phone}<br>Abono: ${money(b.abono)} · saldo: ${money(rest)}<br>Valor del bloque: ${money(val)}</p>
+      <button class="btn alt" data-edit="${b._id}" type="button">Editar</button> <button class="btn red" data-del="${b._id}" type="button">Quitar</button>
+      <form data-save hidden id="edit-${b._id}">${fields(b)}<button class="btn" type="submit">Guardar cambios</button></form>`:`<p class="note">Horario tomado. Valor del bloque: ${money(val)}</p>`}</article>`;
+  }
+  return `<article class="slot"><h3>${s.label} · ${s.hours}</h3><p>Libre · ${money(val)}</p>
+    ${admin?`<form data-save data-date="${date}" data-slot="${s.id}">${fields()}<button class="btn" type="submit">Agendar</button></form>`:'<p class="note">Entra como administrador para agendar.</p>'}</article>`;
+}
+function fields(b={}){
+  return `<label>Nombre<input name="name" required value="${b.name||""}" placeholder="Nombre del cliente"></label>
+    <label>Celular<input name="phone" required value="${b.phone||""}" placeholder="9 1234 5678"></label>
+    <label>Abono<input name="abono" type="number" min="0" step="1000" required value="${b.abono||0}"></label>`;
+}
+async function onSave(e){
+  e.preventDefault();
+  const fd=new FormData(e.target);
+  const item={date:e.target.dataset.date,slot:e.target.dataset.slot,name:fd.get("name").trim(),phone:fd.get("phone").trim(),abono:Number(fd.get("abono")||0)};
+  try{
+    if(e.target.dataset.save.length>8){
+      const id=e.target.dataset.save;
+      const old=bookings.find(x=>x._id===id);
+      await update(id,{date:old.date,slot:old.slot,name:item.name,phone:item.phone,abono:item.abono});
+    }else await save(item);
+    await load();
+  }catch(err){alert(err.message)}
+}
+async function onDel(e){
+  if(!confirm("¿Quitar esta reserva?")) return;
+  try{await remove(e.target.dataset.del);await load()}catch(err){alert(err.message)}
+}
+function onEdit(e){
+  const f=document.getElementById("edit-"+e.target.dataset.edit);
+  f.hidden=!f.hidden;
+  f.dataset.save=e.target.dataset.edit;
+}
+document.getElementById("prev").onclick=()=>{cursor.setMonth(cursor.getMonth()-1);draw()};
+document.getElementById("next").onclick=()=>{cursor.setMonth(cursor.getMonth()+1);draw()};
+document.getElementById("reload").onclick=load;
+drawAdmin();
+load().catch(()=>document.getElementById("detail").insertAdjacentHTML("afterbegin",'<p class="warn">No se pudo cargar la agenda compartida. Recarga en un momento.</p>'));
+</script>
+</body>
+</html>
