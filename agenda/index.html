@@ -70,7 +70,7 @@ input{border:2px solid var(--line);border-radius:12px;padding:10px;background:#f
     <div class="row">
       <div>
         <h1 style="margin:0">Calendario de reservas</h1>
-        <p class="note">Valores vigentes del 6 de septiembre al 31 de diciembre de 2026. Lo que reserve un administrador se ve para todos.</p>
+        <p class="note">Puedes recorrer cualquier mes. Los valores publicados aplican del 6 de septiembre al 31 de diciembre de 2026; fuera de esas fechas el precio es referencial.</p>
       </div>
       <div class="admin" id="adminBox"></div>
     </div>
@@ -143,7 +143,7 @@ async function update(id,item){
   if(!r.ok) throw new Error("No se pudo actualizar");
 }
 
-function drawAdmin(){
+function announce(){let b=document.getElementById("hello");if(!b){b=document.createElement("div");b.id="hello";b.style.cssText="position:fixed;inset:0;background:rgba(59,35,128,.45);z-index:40;display:flex;align-items:center;justify-content:center;padding:16px";document.body.appendChild(b)}b.innerHTML='<div style="background:#fff;border-radius:28px;padding:28px 24px;text-align:center;max-width:420px;box-shadow:0 16px 40px rgba(0,0,0,.25)"><div style="font:800 42px Baloo 2,sans-serif;color:#5fb73a">Sesión iniciada</div><p style="font-weight:800;color:#3b2380">Ya estás como administrador. Puedes agendar, editar y quitar reservas.</p><button class="btn" type="button" onclick="document.getElementById(\'hello\').remove()">Continuar</button></div>';}
   const box=document.getElementById("adminBox");
   box.innerHTML=admin
     ?'<span class="ok">Administrador</span><button class="btn alt" id="logout" type="button">Salir</button>'
@@ -166,7 +166,7 @@ function draw(){
   for(let i=0;i<start;i++) html+='<div></div>';
   for(let d=1;d<=days;d++){
     const date=iso(new Date(cursor.getFullYear(),cursor.getMonth(),d));
-    const ok=inSeason(date);
+    const ok=true;
     const taken=SLOTS.filter(s=>bookings.some(b=>b.date===date&&b.slot===s.id));
     const mine=bookings.filter(b=>b.date===date);
     const who=mine.map(b=>`<span class="who">${b.slot}: ${b.name}<br><em>${b.phone}</em> · ${money(b.abono)}</span>`).join("");
