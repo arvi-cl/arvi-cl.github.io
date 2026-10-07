@@ -143,18 +143,26 @@ async function update(id,item){
   if(!r.ok) throw new Error("No se pudo actualizar");
 }
 
-function announce(){let b=document.getElementById("hello");if(!b){b=document.createElement("div");b.id="hello";b.style.cssText="position:fixed;inset:0;background:rgba(59,35,128,.45);z-index:40;display:flex;align-items:center;justify-content:center;padding:16px";document.body.appendChild(b)}b.innerHTML='<div style="background:#fff;border-radius:28px;padding:28px 24px;text-align:center;max-width:420px;box-shadow:0 16px 40px rgba(0,0,0,.25)"><div style="font:800 42px Baloo 2,sans-serif;color:#5fb73a">Sesión iniciada</div><p style="font-weight:800;color:#3b2380">Ya estás como administrador. Puedes agendar, editar y quitar reservas.</p><button class="btn" type="button" onclick="document.getElementById(\'hello\').remove()">Continuar</button></div>';}
-  const box=document.getElementById("adminBox");
-  box.innerHTML=admin
-    ?'<span class="ok">Administrador</span><button class="btn alt" id="logout" type="button">Salir</button>'
-    :'<input id="pass" type="password" placeholder="Clave de administrador" autocomplete="current-password"><button class="btn" id="login" type="button">Entrar</button>';
-  const login=document.getElementById("login");
-  if(login) login.onclick=()=>{
-    if(document.getElementById("pass").value===PASS){admin=true;sessionStorage.setItem("arviAdmin","1");drawAdmin();if(selected)show(selected)}
-    else alert("Clave incorrecta");
-  };
-  const logout=document.getElementById("logout");
-  if(logout) logout.onclick=()=>{admin=false;sessionStorage.removeItem("arviAdmin");drawAdmin();if(selected)show(selected)};
+
+function announce(){
+  var b=document.getElementById("hello");
+  if(!b){
+    b=document.createElement("div");
+    b.id="hello";
+    b.style.cssText="position:fixed;inset:0;background:rgba(59,35,128,.45);z-index:40;display:flex;align-items:center;justify-content:center;padding:16px";
+    document.body.appendChild(b);
+  }
+  b.innerHTML="";
+  var card=document.createElement("div");
+  card.style.cssText="background:#fff;border-radius:28px;padding:28px 24px;text-align:center;max-width:420px;box-shadow:0 16px 40px rgba(0,0,0,.25)";
+  card.innerHTML='<div style="font:800 42px Baloo 2,sans-serif;color:#5fb73a">Sesión iniciada</div><p style="font-weight:800;color:#3b2380">Ya estás como administrador. Puedes agendar, editar y quitar reservas.</p>';
+  var btn=document.createElement("button");
+  btn.className="btn";
+  btn.type="button";
+  btn.textContent="Continuar";
+  btn.onclick=function(){b.remove()};
+  card.appendChild(btn);
+  b.appendChild(card);
 }
 
 function draw(){
