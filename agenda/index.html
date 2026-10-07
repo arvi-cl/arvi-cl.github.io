@@ -2,147 +2,119 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Agenda · ARVI Happy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARVI Happy Calendario</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--blue:#2f8fe8;--red:#ee3b34;--green:#5fb73a;--yellow:#ffc21a;--pink:#f58ab8;--purple:#3b2380;--bg:#fff8e6;--card:#fff;--text:#2a1c5c;--muted:#6b6290;--line:#ecdfb8}
+:root{--blue:#2f8fe8;--red:#ee3b34;--green:#5fb73a;--yellow:#ffc21a;--pink:#f58ab8;--purple:#3b2380;--bg:#fff6df;--card:#fff;--text:#2a1c5c;--muted:#6d628f;--line:#f0e2b4}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 8% 0,rgba(245,138,184,.28),transparent 26%),var(--bg);color:var(--text);font:500 16px/1.45 Nunito,system-ui,sans-serif}
-h1,h2,h3,button,.logo{font-family:"Baloo 2",sans-serif}
-header{background:linear-gradient(160deg,#4aa4f5,var(--blue) 46%,#6a4ad4);color:#fff;padding:22px 16px 28px;text-align:center}
-.logo{display:inline-block;background:#fff;color:var(--purple);border-radius:22px;padding:6px 16px;font-weight:800;font-size:28px;box-shadow:0 4px 0 #2a1860}
-.logo i{font-style:normal}.logo i:nth-child(1){color:#ffc21a}.logo i:nth-child(2){color:#5fb73a}.logo i:nth-child(3){color:#2f8fe8}.logo i:nth-child(4){color:#ee3b34}
-header p{margin:10px auto 0;max-width:42ch;font-weight:700}
-.kids{width:min(220px,58vw);margin:8px auto 0;display:block}
-main{max-width:980px;margin:-18px auto 40px;padding:0 14px}
-.card{background:var(--card);border:3px solid var(--line);border-radius:22px;padding:16px;margin:0 0 16px}
-.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
-.nav{display:flex;gap:8px;align-items:center}
-button,input,select{font:inherit}
-.btn{border:0;border-radius:999px;padding:10px 16px;font-weight:800;cursor:pointer;background:var(--blue);color:#fff;box-shadow:0 4px 0 #1b62a8}
+body{margin:0;min-height:100vh;color:var(--text);font:500 16px/1.45 Nunito,system-ui,sans-serif;background:
+  radial-gradient(circle at 8% 10%,rgba(245,138,184,.35),transparent 24%),
+  radial-gradient(circle at 92% 0,rgba(47,143,232,.22),transparent 26%),
+  linear-gradient(180deg,#fffaf0,var(--bg))}
+h1,h2,h3,button{font-family:"Baloo 2",sans-serif}
+.app{max-width:1080px;margin:auto;padding:18px 16px 40px}
+.top{display:grid;grid-template-columns:1.3fr .7fr;gap:16px;align-items:center;background:linear-gradient(145deg,#fff,#fff8ea);border:3px solid #fff;border-radius:28px;padding:16px 18px;box-shadow:0 16px 40px rgba(59,35,128,.1);animation:rise .5s ease}
+.logo{width:min(460px,100%);height:auto;animation:float 4.2s ease-in-out infinite}
+.intro h1{margin:0;font-size:clamp(28px,4vw,40px)}
+.intro p{margin:6px 0 0;color:var(--muted);font-weight:700}
+.admin{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.card{background:rgba(255,255,255,.92);border:3px solid var(--line);border-radius:24px;padding:16px;margin-top:16px;box-shadow:0 10px 0 rgba(59,35,128,.04);animation:rise .55s ease both}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.price{border-radius:18px;padding:12px;color:#fff;transform:translateY(0);transition:transform .2s}
+.price:hover{transform:translateY(-4px)}
+.price b{display:block;font-size:24px}
+.p1{background:linear-gradient(135deg,#5fb73a,#2f8fe8)}
+.p2{background:linear-gradient(135deg,#ffc21a,#f58ab8)}
+.p3{background:linear-gradient(135deg,#ee3b34,#3b2380)}
+button,input{font:inherit}
+.btn{border:0;border-radius:999px;padding:10px 16px;font-weight:800;cursor:pointer;color:#fff;background:var(--blue);box-shadow:0 4px 0 #1b62a8;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #1b62a8}
 .btn.alt{background:#fff;color:var(--purple);border:2px solid var(--line);box-shadow:none}
 .btn.red{background:var(--red);box-shadow:0 4px 0 #a8201b}
-.btn.yellow{background:var(--yellow);color:var(--purple);box-shadow:0 4px 0 #c58f00}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.legend span,.tag{border-radius:999px;padding:4px 10px;font-size:13px;font-weight:800;background:var(--bg)}
-.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.nav{display:flex;gap:8px;align-items:center}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:12px}
 .dow{text-align:center;font-size:12px;font-weight:800;color:var(--muted)}
-.day{min-height:112px;border:3px solid #d9d0b8;border-radius:14px;background:#fff;padding:6px;text-align:left;cursor:pointer}
+.day{min-height:108px;border:3px solid #d9d0b8;border-radius:16px;background:#fff;padding:7px;text-align:left;cursor:pointer;animation:pop .35s ease both}
 .day.semana{border-color:#2f8fe8;box-shadow:inset 0 0 0 2px #5fb73a}
 .day.festivo{border-color:#ee3b34;box-shadow:inset 0 0 0 2px #3b2380}
-.day.off{opacity:.35;cursor:default}
+.day:hover{transform:translateY(-3px)}
 .day.on{outline:3px solid var(--yellow);outline-offset:2px}
-.day b{display:block;font-size:16px}
-.day.booked{background:linear-gradient(180deg,#fff4b8,#ffd0e4);border-color:#ee3b34}
+.day.off{opacity:.35;cursor:default}
+.day b{font-size:16px}
+.day.booked{background:linear-gradient(180deg,#fff4b8,#ffd0e4);border-color:#ee3b34;box-shadow:0 8px 0 rgba(238,59,52,.18)}
 .who{display:block;margin-top:4px;font-size:11px;line-height:1.25;font-weight:800;color:#3b2380}
 .who em{font-style:normal;color:#9a2464}
-.pips{display:flex;gap:3px;margin-top:6px}
-.pip{width:8px;height:8px;border-radius:50%;background:#e7e0c8}
-.pip.busy{background:var(--red)}
-.pip.free{background:var(--green)}
-.prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
-.price{background:var(--bg);border-radius:14px;padding:10px}
-.price b{display:block;font-size:20px}
+.pips{display:flex;gap:4px;margin-top:8px}
+.pip{width:9px;height:9px;border-radius:50%;background:#efe6c8}
+.pip.free{background:var(--green);box-shadow:0 0 0 3px rgba(95,183,58,.18)}
+.pip.busy{background:var(--red);box-shadow:0 0 0 3px rgba(238,59,52,.16)}
 .slots{display:grid;gap:10px}
-.slot{border:2px solid var(--line);border-radius:16px;padding:12px}
-.slot.busy{border-color:var(--pink);background:#fff5fa}
-.slot h3{margin:0 0 4px}
+.slot{border-radius:18px;padding:14px;background:#fffaf0;box-shadow:inset 0 0 0 2px var(--line);animation:rise .35s ease}
+.slot.busy{background:#fff3f8;box-shadow:inset 0 0 0 2px var(--pink)}
 form{display:grid;gap:8px;margin-top:8px}
 label{font-size:13px;font-weight:800;color:var(--muted)}
 input{border:2px solid var(--line);border-radius:12px;padding:10px;background:#fff;color:var(--text)}
-.note{color:var(--muted);font-size:13px}
-.admin{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.ok{color:#1d7a32;font-weight:800}
-.warn{color:#9a2464;font-weight:800}
-@media(max-width:640px){.day{min-height:64px;padding:4px}.day small{display:none}}
+.note{color:var(--muted);font-size:13px;font-weight:700}
+.ok{color:#1d7a32;font-weight:800}.warn{color:#9a2464;font-weight:800}
+.confetti{position:fixed;inset:0;pointer-events:none}
+.confetti i{position:absolute;top:-10px;width:10px;height:14px;border-radius:2px;animation:fall 1.1s linear forwards}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes float{50%{transform:translateY(-8px)}}
+@keyframes pop{from{opacity:0;transform:scale(.96)}}
+@keyframes fall{to{transform:translateY(100vh) rotate(240deg);opacity:.2}}
+@media(max-width:760px){.top,.prices{grid-template-columns:1fr}.day{min-height:92px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo" aria-label="ARVI Happy"><i>A</i><i>R</i><i>V</i><i>I</i> Happy</div>
-  <p>Agenda de cumpleaños · Metro Observatorio · 3 horas de uso</p>
-  <img class="kids" src="../happy/ninos.png" alt="Niños de ARVI Happy">
-</header>
-<main>
-  <section class="card">
-    <div class="row">
-      <div>
-        <h1 style="margin:0">Calendario de reservas</h1>
-        <p class="note">Puedes recorrer cualquier mes. Los valores publicados aplican del 6 de septiembre al 31 de diciembre de 2026; fuera de esas fechas el precio es referencial.</p>
-      </div>
+<div class="app">
+  <section class="top">
+    <img class="logo" src="logo.png" alt="ARVI Happy, salón de cumpleaños">
+    <div class="intro">
+      <h1>Calendario de reservas</h1>
+      <p>Metro Observatorio · 3 horas de uso · Las fechas ya pasadas quedan bloqueadas. Los valores publicados aplican del 6 de septiembre al 31 de diciembre de 2026.</p>
       <div class="card" style="margin-top:12px"><h2 style="margin:0 0 6px">Entrar como administrador</h2><p class="note">Sin esta clave solo se puede ver el calendario.</p><div class="admin" id="adminBox"></div></div>
     </div>
+  </section>
+  <section class="card">
     <div class="prices">
-      <div class="price"><span>Lunes a viernes</span><b>$150.000</b></div>
-      <div class="price"><span>Sábado, domingo y festivos AM</span><b>$180.000</b></div>
-      <div class="price"><span>Sábado, domingo y festivos</span><b>$200.000</b></div>
+      <div class="price p1"><span>Lunes a viernes</span><b>$150.000</b></div>
+      <div class="price p2"><span>Sábado, domingo y festivos AM</span><b>$180.000</b></div>
+      <div class="price p3"><span>Sábado, domingo y festivos</span><b>$200.000</b></div>
     </div>
   </section>
   <section class="card">
     <div class="row">
-      <div class="nav">
-        <button class="btn alt" id="prev" type="button">←</button>
-        <h2 id="title" style="margin:0">Septiembre 2026</h2>
-        <button class="btn alt" id="next" type="button">→</button>
-      </div>
+      <div class="nav"><button class="btn alt" id="prev" type="button">←</button><h2 id="title" style="margin:0">Septiembre 2026</h2><button class="btn alt" id="next" type="button">→</button></div>
       <button class="btn alt" id="reload" type="button">Actualizar</button>
     </div>
-    <div class="legend"><span>Verde: libre</span><span>Rojo: reservado</span><span>AM 11:00–14:00</span><span>PM 16:00–19:00</span><span>Alternativa 17:00–20:00</span></div>
-    <div class="cal" id="cal" style="margin-top:12px"></div>
+    <div class="cal" id="cal"></div>
   </section>
-  <section class="card" id="detail">
-    <h2>Elige un día</h2>
-    <p class="note">Ahí puedes ver los horarios y, si eres administrador, agendar nombre, celular y abono.</p>
-  </section>
-</main>
+  <section class="card" id="detail"><h2>Elige un día</h2><p class="note">AM 11:00–14:00 · PM 16:00–19:00 · Alternativa 17:00–20:00</p></section>
+</div>
+<div class="confetti" id="confetti"></div>
 <script>
 const PASS="Arvi232342";
 const API="https://crudcrud.com/api/aa4864432f3d41648da177a620d5b130/bookings";
-const SLOTS=[
-  {id:"AM",label:"AM",hours:"11:00 a 14:00"},
-  {id:"PM",label:"PM",hours:"16:00 a 19:00"},
-  {id:"ALT",label:"Opción alternativa",hours:"17:00 a 20:00"}
-];
+const SLOTS=[{id:"AM",label:"AM",hours:"11:00 a 14:00"},{id:"PM",label:"PM",hours:"16:00 a 19:00"},{id:"ALT",label:"Opción alternativa",hours:"17:00 a 20:00"}];
 const HOLIDAYS=new Set(["2026-01-01","2026-04-03","2026-04-04","2026-05-01","2026-05-21","2026-06-21","2026-06-29","2026-07-16","2026-08-15","2026-09-18","2026-09-19","2026-10-12","2026-10-31","2026-11-01","2026-12-08","2026-12-25"]);
 const MONTHS=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 const DOW=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
-let cursor=new Date(2026,8,1), selected="", bookings=[], admin=sessionStorage.getItem("arviAdmin")==="1";
-
+let now=new Date(); let cursor=new Date(now.getFullYear(), now.getMonth(), 1), selected="", bookings=[], admin=sessionStorage.getItem("arviAdmin")==="1";
 const money=n=>"$"+Number(n||0).toLocaleString("es-CL");
 const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 const parse=s=>{const p=s.split("-");return new Date(+p[0],+p[1]-1,+p[2])};
-function kind(date){
-  const d=parse(date), day=d.getDay();
-  return day===0||day===6||HOLIDAYS.has(date)?"festivo":"semana";
-}
-function price(date,slot){
-  if(kind(date)==="semana") return 150000;
-  return slot==="AM"?180000:200000;
-}
-function inSeason(date){return date>="2026-09-06"&&date<="2026-12-31"}
-
-async function load(){
-  const r=await fetch(API);
-  bookings=await r.json();
-  draw();
-  if(selected) show(selected);
-}
-async function save(item){
-  const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(item)});
-  if(!r.ok) throw new Error("No se pudo guardar");
-  return r.json();
-}
-async function remove(id){
-  const r=await fetch(API+"/"+id,{method:"DELETE"});
-  if(!r.ok) throw new Error("No se pudo eliminar");
-}
-async function update(id,item){
-  const r=await fetch(API+"/"+id,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(item)});
-  if(!r.ok) throw new Error("No se pudo actualizar");
-}
-
+const kind=date=>{const d=parse(date);return d.getDay()===0||d.getDay()===6||HOLIDAYS.has(date)?"festivo":"semana"};
+const price=(date,slot)=>kind(date)==="semana"?150000:(slot==="AM"?180000:200000);
+const inSeason=date=>date>="2026-09-06"&&date<="2026-12-31";
+function burst(){const box=document.getElementById("confetti");["#ffc21a","#ee3b34","#2f8fe8","#5fb73a","#f58ab8"].forEach((c,n)=>{for(let i=0;i<6;i++){const el=document.createElement("i");el.style.left=Math.random()*100+"%";el.style.background=c;el.style.animationDelay=Math.random()*.2+"s";box.appendChild(el);setTimeout(()=>el.remove(),1200)}})}
+async function load(){bookings=await (await fetch(API)).json();draw();if(selected)show(selected)}
+async function save(item){const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(item)});if(!r.ok)throw new Error("No se pudo guardar");return r.json()}
+async function remove(id){const r=await fetch(API+"/"+id,{method:"DELETE"});if(!r.ok)throw new Error("No se pudo eliminar")}
+async function update(id,item){const r=await fetch(API+"/"+id,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(item)});if(!r.ok)throw new Error("No se pudo actualizar")}
 
 
 function drawAdmin(){
@@ -184,81 +156,51 @@ function announce(){
 
 function draw(){
   document.getElementById("title").textContent=MONTHS[cursor.getMonth()].replace(/^./,c=>c.toUpperCase())+" "+cursor.getFullYear();
-  const first=new Date(cursor.getFullYear(),cursor.getMonth(),1);
-  let start=(first.getDay()+6)%7;
-  const days=new Date(cursor.getFullYear(),cursor.getMonth()+1,0).getDate();
+  const first=new Date(cursor.getFullYear(),cursor.getMonth(),1), start=(first.getDay()+6)%7, days=new Date(cursor.getFullYear(),cursor.getMonth()+1,0).getDate();
   let html=DOW.map(d=>'<div class="dow">'+d+'</div>').join("");
-  for(let i=0;i<start;i++) html+='<div></div>';
+  for(let i=0;i<start;i++)html+="<div></div>";
   for(let d=1;d<=days;d++){
-    const date=iso(new Date(cursor.getFullYear(),cursor.getMonth(),d));
-    const ok=true;
+    const date=iso(new Date(cursor.getFullYear(),cursor.getMonth(),d)), ok=date>=iso(new Date());
     const taken=SLOTS.filter(s=>bookings.some(b=>b.date===date&&b.slot===s.id));
     const mine=bookings.filter(b=>b.date===date);
     const who=mine.map(b=>`<span class="who">${b.slot}: ${b.name}<br><em>${b.phone}</em> · ${money(b.abono)}</span>`).join("");
-    html+=`<button class="day ${kind(date)}${ok?"":" off"}${mine.length?" booked":""}${date===selected?" on":""}" data-date="${date}" ${ok?"":"disabled"}><b>${d}</b>${who}<div class="pips">${SLOTS.map(s=>`<i class="pip ${taken.some(x=>x.id===s.id)?"busy":"free"}"></i>`).join("")}</div></button>`;
+    html+=`<button class="day ${kind(date)}${ok?"":" off"}${mine.length?" booked":""}${date===selected?" on":""}" style="animation-delay:${d*12}ms" data-date="${date}" ${ok?"":"disabled"}><b>${d}</b>${who}<div class="pips">${SLOTS.map(s=>`<i class="pip ${taken.some(x=>x.id===s.id)?"busy":"free"}"></i>`).join("")}</div></button>`;
   }
   document.getElementById("cal").innerHTML=html;
   document.querySelectorAll(".day[data-date]").forEach(b=>b.onclick=()=>show(b.dataset.date));
 }
-
-function booking(date,slot){return bookings.find(b=>b.date===date&&b.slot===slot)}
+const booking=(date,slot)=>bookings.find(b=>b.date===date&&b.slot===slot);
 function show(date){
-  selected=date; draw();
-  const d=parse(date);
-  const label=d.toLocaleDateString("es-CL",{weekday:"long",day:"numeric",month:"long"});
+  if(date<iso(new Date())) return;
+  selected=date;draw();
+  const label=parse(date).toLocaleDateString("es-CL",{weekday:"long",day:"numeric",month:"long"});
   const overlap=booking(date,"PM")&&booking(date,"ALT");
-  document.getElementById("detail").innerHTML=`<h2 style="margin-top:0;text-transform:capitalize">${label}</h2>
-    <p class="note">${kind(date)==="festivo"?"Sábado, domingo o festivo":"Lunes a viernes"} · valores por 3 horas</p>
-    ${overlap?'<p class="warn">Ojo: PM y la opción alternativa se cruzan entre 17:00 y 19:00.</p>':""}
-    <div class="slots">${SLOTS.map(s=>slotCard(date,s)).join("")}</div>`;
+  document.getElementById("detail").innerHTML=`<h2 style="margin-top:0;text-transform:capitalize">${label}</h2><p class="note">${kind(date)==="festivo"?"Sábado, domingo o festivo":"Lunes a viernes"} · valores por 3 horas</p>${overlap?'<p class="warn">PM y la opción alternativa se cruzan entre 17:00 y 19:00.</p>':""}<div class="slots">${SLOTS.map(s=>slotCard(date,s)).join("")}</div>`;
   document.querySelectorAll("[data-save]").forEach(f=>f.onsubmit=onSave);
   document.querySelectorAll("[data-del]").forEach(b=>b.onclick=onDel);
   document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=onEdit);
 }
 function slotCard(date,s){
   const b=booking(date,s.id), val=price(date,s.id);
-  if(b){
-    const rest=Math.max(val-Number(b.abono||0),0);
-    return `<article class="slot busy"><h3>${s.label} · ${s.hours}</h3><p><b>${b.name}</b> · reservado</p>
-      ${admin?`<p>Celular: ${b.phone}<br>Abono: ${money(b.abono)} · saldo: ${money(rest)}<br>Valor del bloque: ${money(val)}</p>
-      <button class="btn alt" data-edit="${b._id}" type="button">Editar</button> <button class="btn red" data-del="${b._id}" type="button">Quitar</button>
-      <form data-save hidden id="edit-${b._id}">${fields(b)}<button class="btn" type="submit">Guardar cambios</button></form>`:`<p class="note">Horario tomado. Valor del bloque: ${money(val)}</p>`}</article>`;
-  }
-  return `<article class="slot"><h3>${s.label} · ${s.hours}</h3><p>Libre · ${money(val)}</p>
-    ${admin?`<form data-save data-date="${date}" data-slot="${s.id}">${fields()}<button class="btn" type="submit">Agendar</button></form>`:'<p class="note">Entra como administrador para agendar.</p>'}</article>`;
+  if(b)return `<article class="slot busy"><h3>${s.label} · ${s.hours}</h3><p><b>${b.name}</b> · reservado</p>${admin?`<p>Celular: ${b.phone}<br>Abono: ${money(b.abono)} · saldo: ${money(Math.max(val-Number(b.abono||0),0))}<br>Valor: ${money(val)}</p><button class="btn alt" data-edit="${b._id}" type="button">Editar</button> <button class="btn red" data-del="${b._id}" type="button">Quitar</button><form data-save hidden id="edit-${b._id}">${fields(b)}<button class="btn" type="submit">Guardar cambios</button></form>`:`<p class="note">Horario tomado. Valor del bloque: ${money(val)}</p>`}</article>`;
+  return `<article class="slot"><h3>${s.label} · ${s.hours}</h3><p>Libre · ${money(val)}</p>${admin?`<form data-save data-date="${date}" data-slot="${s.id}">${fields()}<button class="btn" type="submit">Agendar</button></form>`:'<p class="note">Entra como administrador para agendar.</p>'}</article>`;
 }
-function fields(b={}){
-  return `<label>Nombre<input name="name" required value="${b.name||""}" placeholder="Nombre del cliente"></label>
-    <label>Celular<input name="phone" required value="${b.phone||""}" placeholder="9 1234 5678"></label>
-    <label>Abono<input name="abono" type="number" min="0" step="1000" required value="${b.abono||0}"></label>`;
-}
+function fields(b={}){return `<label>Nombre<input name="name" required value="${b.name||""}"></label><label>Celular<input name="phone" required value="${b.phone||""}"></label><label>Abono<input name="abono" type="number" min="0" step="1000" required value="${b.abono||0}"></label>`}
 async function onSave(e){
   e.preventDefault();
-  const fd=new FormData(e.target);
-  const item={date:e.target.dataset.date,slot:e.target.dataset.slot,name:fd.get("name").trim(),phone:fd.get("phone").trim(),abono:Number(fd.get("abono")||0)};
+  const fd=new FormData(e.target), item={date:e.target.dataset.date,slot:e.target.dataset.slot,name:fd.get("name").trim(),phone:fd.get("phone").trim(),abono:Number(fd.get("abono")||0)};
   try{
-    if(e.target.dataset.save.length>8){
-      const id=e.target.dataset.save;
-      const old=bookings.find(x=>x._id===id);
-      await update(id,{date:old.date,slot:old.slot,name:item.name,phone:item.phone,abono:item.abono});
-    }else await save(item);
-    await load();
+    if((e.target.dataset.save||"").length>8){const id=e.target.dataset.save, old=bookings.find(x=>x._id===id);await update(id,{date:old.date,slot:old.slot,name:item.name,phone:item.phone,abono:item.abono})}
+    else await save(item);
+    burst();await load();
   }catch(err){alert(err.message)}
 }
-async function onDel(e){
-  if(!confirm("¿Quitar esta reserva?")) return;
-  try{await remove(e.target.dataset.del);await load()}catch(err){alert(err.message)}
-}
-function onEdit(e){
-  const f=document.getElementById("edit-"+e.target.dataset.edit);
-  f.hidden=!f.hidden;
-  f.dataset.save=e.target.dataset.edit;
-}
+async function onDel(e){if(!confirm("¿Quitar esta reserva?"))return;try{await remove(e.target.dataset.del);await load()}catch(err){alert(err.message)}}
+function onEdit(e){const f=document.getElementById("edit-"+e.target.dataset.edit);f.hidden=!f.hidden;f.dataset.save=e.target.dataset.edit}
 document.getElementById("prev").onclick=()=>{cursor.setMonth(cursor.getMonth()-1);draw()};
 document.getElementById("next").onclick=()=>{cursor.setMonth(cursor.getMonth()+1);draw()};
 document.getElementById("reload").onclick=load;
-drawAdmin();
-load().catch(()=>document.getElementById("detail").insertAdjacentHTML("afterbegin",'<p class="warn">No se pudo cargar la agenda compartida. Recarga en un momento.</p>'));
+drawAdmin();load().catch(()=>document.getElementById("detail").insertAdjacentHTML("afterbegin",'<p class="warn">No se pudo cargar la agenda. Revisa la conexión.</p>'));
 </script>
 </body>
 </html>
