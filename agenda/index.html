@@ -29,11 +29,15 @@ button,input,select{font:inherit}
 .legend span,.tag{border-radius:999px;padding:4px 10px;font-size:13px;font-weight:800;background:var(--bg)}
 .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .dow{text-align:center;font-size:12px;font-weight:800;color:var(--muted)}
-.day{min-height:86px;border:2px solid var(--line);border-radius:14px;background:#fff;padding:6px;text-align:left;cursor:pointer}
+.day{min-height:112px;border:3px solid #d9d0b8;border-radius:14px;background:#fff;padding:6px;text-align:left;cursor:pointer}
+.day.semana{border-color:#2f8fe8;box-shadow:inset 0 0 0 2px #5fb73a}
+.day.festivo{border-color:#ee3b34;box-shadow:inset 0 0 0 2px #3b2380}
 .day.off{opacity:.35;cursor:default}
-.day.on{border-color:var(--purple);box-shadow:0 0 0 3px rgba(59,35,128,.15)}
+.day.on{outline:3px solid var(--yellow);outline-offset:2px}
 .day b{display:block;font-size:16px}
-.day small{display:block;color:var(--muted);font-size:11px}
+.day.booked{background:linear-gradient(180deg,#fff4b8,#ffd0e4);border-color:#ee3b34}
+.who{display:block;margin-top:4px;font-size:11px;line-height:1.25;font-weight:800;color:#3b2380}
+.who em{font-style:normal;color:#9a2464}
 .pips{display:flex;gap:3px;margin-top:6px}
 .pip{width:8px;height:8px;border-radius:50%;background:#e7e0c8}
 .pip.busy{background:var(--red)}
@@ -164,7 +168,9 @@ function draw(){
     const date=iso(new Date(cursor.getFullYear(),cursor.getMonth(),d));
     const ok=inSeason(date);
     const taken=SLOTS.filter(s=>bookings.some(b=>b.date===date&&b.slot===s.id));
-    html+=`<button class="day${ok?"":" off"}${date===selected?" on":""}" data-date="${date}" ${ok?"":"disabled"}><b>${d}</b><small>${kind(date)==="festivo"?"Festivo":"Semana"}</small><div class="pips">${SLOTS.map(s=>`<i class="pip ${taken.some(x=>x.id===s.id)?"busy":"free"}" title="${s.label}"></i>`).join("")}</div></button>`;
+    const mine=bookings.filter(b=>b.date===date);
+    const who=mine.map(b=>`<span class="who">${b.slot}: ${b.name}<br><em>${b.phone}</em> · ${money(b.abono)}</span>`).join("");
+    html+=`<button class="day ${kind(date)}${ok?"":" off"}${mine.length?" booked":""}${date===selected?" on":""}" data-date="${date}" ${ok?"":"disabled"}><b>${d}</b>${who}<div class="pips">${SLOTS.map(s=>`<i class="pip ${taken.some(x=>x.id===s.id)?"busy":"free"}"></i>`).join("")}</div></button>`;
   }
   document.getElementById("cal").innerHTML=html;
   document.querySelectorAll(".day[data-date]").forEach(b=>b.onclick=()=>show(b.dataset.date));
