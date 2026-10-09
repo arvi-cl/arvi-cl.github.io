@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archivo Oktoberfest</title>
+<style>
+body{margin:0;font:16px/1.4 Nunito,sans-serif;background:#1c140c;color:#fff8e8}
+main{max-width:980px;margin:auto;padding:20px}
+input,button{font:inherit;padding:10px;border-radius:10px;border:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+article{background:#2a1d12;border-radius:16px;padding:10px}
+img{width:100%;border-radius:12px;background:#000}
+a{color:#f4b000}
+</style>
+</head>
+<body>
+<main>
+  <h1>Archivo privado · ARVI Oktoberfest</h1>
+  <p id="gate">Clave <input id="pass" type="password"> <button id="go">Entrar</button></p>
+  <div id="list" hidden></div>
+</main>
+<script>
+const PASS="Arvi232342";
+const API="https://crudcrud.com/api/ffaa521ceace44a5a4782bf6b799e118/fotos";
+document.getElementById("go").onclick=async()=>{
+  if(document.getElementById("pass").value!==PASS){alert("Clave incorrecta");return}
+  const items=await (await fetch(API)).json();
+  document.getElementById("gate").hidden=true;
+  const list=document.getElementById("list");
+  list.hidden=false;
+  list.innerHTML=items.length?`<p>${items.length} foto(s)</p><div class="grid">${items.slice().reverse().map(x=>`<article><img src="${x.foto}" alt=""><b>${x.nombre||""}</b><p>${x.nota||""}</p><small>${x.cuando||""}</small><br><a download="oktoberfest.jpg" href="${x.foto}">Descargar</a></article>`).join("")}</div>`:"<p>Aún no hay fotos.</p>";
+};
+</script>
+</body>
+</html>
