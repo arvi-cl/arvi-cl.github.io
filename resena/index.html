@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>¿Cómo estuvo tu cumpleaños? · ARVI Happy</title>
+<link rel="icon" href="../happy/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../happy/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://arvi-cl.github.io/resena/">
+<meta property="og:title" content="¿Cómo estuvo tu cumpleaños?">
+<meta property="og:description" content="Cuéntanos cómo la pasaste en ARVI Happy y déjanos tu reseña.">
+<meta property="og:image" content="https://arvi-cl.github.io/resena/banner.jpg">
+<meta property="og:image:secure_url" content="https://arvi-cl.github.io/resena/banner.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#2f8fe8;--red:#ee3b34;--green:#5fb73a;--yellow:#ffc21a;--pink:#f58ab8;--purple:#3b2380;
+  --bg:#fff8e6;--card:#ffffff;--text:#2a1c5c;--muted:#6b6290;--line:#ecdfb8;--chip:#fff3c4;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1d1440;--card:#2a1d5c;--text:#fff6dd;--muted:#c4b9ee;--line:#43338a;--chip:#3a2a7a}}
+:root[data-theme="dark"]{--bg:#1d1440;--card:#2a1d5c;--text:#fff6dd;--muted:#c4b9ee;--line:#43338a;--chip:#3a2a7a}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100%;background:
+  radial-gradient(circle at 12% 8%,rgba(245,138,184,.28),transparent 28%),
+  radial-gradient(circle at 90% 0,rgba(47,143,232,.22),transparent 26%),
+  var(--bg);color:var(--text);font:400 17px/1.55 Nunito,system-ui,sans-serif}
+h1,h2,h3,.btn,.bubble{font-family:"Baloo 2","Trebuchet MS",sans-serif}
+.hero{background:linear-gradient(160deg,#4aa4f5 0%,var(--blue) 42%,#6a4ad4 100%);padding:28px 16px 78px;text-align:center;position:relative;color:#fff;overflow:visible}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:48px;background:var(--bg);clip-path:ellipse(62% 100% at 50% 100%)}
+.balloon{position:absolute;font-size:28px;opacity:.9;animation:float 6.5s ease-in-out infinite;pointer-events:none}
+.b1{left:6%;top:18px}.b2{right:8%;top:36px;animation-delay:-2s}.b3{left:18%;bottom:70px;animation-delay:-3.4s;font-size:22px}.b4{right:16%;bottom:78px;animation-delay:-1.2s;font-size:22px}
+@keyframes float{50%{transform:translateY(-14px) rotate(7deg)}}
+.logo{display:inline-block;background:#fff;border-radius:28px;padding:10px 22px 8px;box-shadow:0 5px 0 var(--purple);position:relative;z-index:1;animation:pop .6s ease}
+.logo b{display:block;font:800 clamp(38px,11vw,60px)/1 "Baloo 2",sans-serif;letter-spacing:1px}
+.logo b i{font-style:normal}
+.logo b i:nth-child(1){color:var(--yellow)}.logo b i:nth-child(2){color:var(--green)}.logo b i:nth-child(3){color:var(--blue)}.logo b i:nth-child(4){color:var(--red)}
+.logo b i:nth-child(5){color:var(--yellow)}.logo b i:nth-child(6){color:var(--red)}.logo b i:nth-child(7){color:var(--blue)}.logo b i:nth-child(8){color:var(--pink)}.logo b i:nth-child(9){color:var(--yellow)}.logo b i:nth-child(10){color:var(--green)}
+.logo span{display:block;background:var(--yellow);color:var(--red);font:800 14px "Baloo 2",sans-serif;border-radius:12px;padding:1px 12px;margin-top:2px}
+.hero p{margin:18px auto 0;max-width:32ch;font-weight:700;font-size:18px;position:relative;z-index:1}
+.pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:14px 0 0;position:relative;z-index:1}
+.pills span{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:4px 10px;font-size:13px;font-weight:700}
+.mascot-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:12px;position:relative;z-index:1}
+.kids{display:flex;align-items:flex-end;justify-content:center}
+.duo{width:min(250px,70vw);height:auto;display:block;filter:drop-shadow(0 8px 0 rgba(59,35,128,.16));transform-origin:50% 100%;animation:sway 3.4s ease-in-out infinite}
+.duo.cheer{animation:cheer .7s ease}
+.ig{display:block}
+.ig .duo{width:min(210px,62vw);display:block;margin:0 auto 12px}
+@keyframes sway{50%{transform:rotate(-4deg) translateY(-6px)}}
+@keyframes cheer{0%{transform:rotate(-8deg) scale(1)}40%{transform:rotate(8deg) scale(1.08)}100%{transform:rotate(0) scale(1)}}
+.bubble{background:#fff;color:var(--purple);border-radius:18px;padding:10px 14px;font-weight:800;max-width:240px;margin:0;box-shadow:0 5px 0 rgba(59,35,128,.18);animation:pop .45s ease}
+main{max-width:640px;margin:-22px auto 0;padding:0 16px 56px;position:relative}
+.card{background:var(--card);border:3px solid var(--line);border-radius:26px;padding:24px 20px;margin:0 0 18px;box-shadow:0 8px 0 rgba(59,35,128,.05);animation:rise .55s ease both}
+.card:nth-of-type(2){animation-delay:.08s}.card:nth-of-type(3){animation-delay:.14s}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pop{50%{transform:scale(1.08)}}
+h1{font-size:clamp(30px,8vw,42px);line-height:1.05;margin:0 0 6px;color:var(--text)}
+h2{font-size:24px;line-height:1.15;margin:0 0 10px}
+.lead{color:var(--muted);margin:0 0 4px}
+.meter{height:12px;background:var(--chip);border-radius:999px;overflow:hidden;margin:12px 0 6px;border:2px solid var(--line)}
+.meter i{display:block;height:100%;width:8%;border-radius:inherit;background:linear-gradient(90deg,var(--yellow),var(--pink),var(--blue));transition:width .45s cubic-bezier(.2,1.4,.4,1)}
+.meter-msg{margin:0;font-size:14px;font-weight:800;color:var(--purple)}
+.stars{display:flex;gap:4px;margin:8px 0 0}
+.stars button{background:none;border:0;padding:2px;font-size:46px;line-height:1;cursor:pointer;color:var(--line);transition:transform .2s cubic-bezier(.2,1.6,.4,1),color .15s}
+.stars button.on{color:var(--yellow);text-shadow:0 4px 0 rgba(197,143,0,.35);transform:translateY(-4px) rotate(-6deg)}
+.stars button.pop{animation:spinpop .45s ease}
+@keyframes spinpop{50%{transform:scale(1.35) rotate(12deg)}}
+.stars-msg{min-height:1.6em;margin:2px 0 0;font-weight:800;color:var(--purple)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .stars-msg,:root:not([data-theme="light"]) .meter-msg{color:var(--yellow)}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;background:var(--chip);border:3px solid transparent;border-radius:999px;padding:8px 16px;font-weight:700;cursor:pointer;transition:transform .2s cubic-bezier(.2,1.5,.4,1),background .15s}
+.chip input:checked+span{background:var(--blue);color:#fff;border-color:var(--purple);transform:translateY(-4px) rotate(-2deg)}
+.chip input:focus-visible+span,.stars button:focus-visible,.btn:focus-visible,textarea:focus-visible,.opt input:focus-visible+span{outline:3px solid var(--red);outline-offset:2px}
+textarea{width:100%;min-height:120px;border:3px solid var(--line);border-radius:18px;padding:14px;font:inherit;color:var(--text);background:var(--bg);resize:vertical;transition:border-color .2s,transform .2s}
+textarea:focus{border-color:var(--blue);transform:scale(1.01)}
+.opts{display:grid;gap:10px;margin-top:8px}
+.opt{display:block}
+.opt input{position:absolute;opacity:0}
+.opt span{display:flex;align-items:center;gap:12px;border:3px solid var(--line);border-radius:18px;padding:12px 16px;font-weight:700;cursor:pointer;transition:transform .2s,border-color .15s}
+.opt span::before{content:"";width:22px;height:22px;border-radius:50%;border:3px solid var(--blue);flex:none}
+.opt input:checked+span{border-color:var(--green);background:var(--chip);transform:translateX(4px)}
+.opt input:checked+span::before{background:var(--green);border-color:var(--green);box-shadow:inset 0 0 0 4px var(--chip)}
+.btn{display:inline-block;border:0;border-radius:999px;padding:12px 28px;font-size:20px;font-weight:800;color:#fff;background:var(--red);box-shadow:0 5px 0 #a8201b;cursor:pointer;text-decoration:none;text-align:center;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #a8201b}
+.btn.blue{background:var(--blue);box-shadow:0 5px 0 #1b62a8}
+.btn.yellow{background:var(--yellow);color:var(--purple);box-shadow:0 5px 0 #c58f00}
+.btn.ig{background:linear-gradient(90deg,#f9ce34,#ee2a7b 55%,#6228d7);box-shadow:0 5px 0 #9a2464;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.03)}}
+.btn.full{display:block;width:100%}
+.photo{background:linear-gradient(160deg,var(--purple),#5a36b8);color:#fff;border-color:#2a1868}
+.photo h2{color:var(--yellow)}
+.photo p{margin:0 0 16px}
+.preview{display:none;margin:0 auto 16px;background:#fff;padding:10px 10px 28px;border-radius:6px;transform:rotate(-2deg);box-shadow:0 8px 18px rgba(0,0,0,.35);max-width:320px;position:relative}
+.preview::before{content:"";position:absolute;top:-10px;left:42%;width:54px;height:18px;background:rgba(255,194,26,.85);transform:rotate(-8deg)}
+.preview img{display:block;width:100%;max-height:300px;object-fit:cover;border-radius:3px}
+.preview.show{display:block;animation:pop .4s ease}
+.card.ig{display:flex;flex-direction:column;align-items:center;text-align:center;overflow:visible}
+.card.ig .duo{width:min(190px,58vw);margin:0 auto 8px}
+.card.ig h2,.card.ig p,.card.ig .btn{position:relative;z-index:1}
+.ig p{margin:0 0 10px}
+.lock{text-align:center}
+.lock .big{font-size:64px;line-height:1;animation:float 3.2s ease-in-out infinite}
+.hidden{display:none!important}
+.end{text-align:center;padding:30px 20px;background:var(--yellow);border-color:var(--purple);color:var(--purple)}
+.end h2{font-size:30px}
+.end p{margin:0 0 14px;font-weight:700;font-size:19px}
+.link{background:none;border:0;color:var(--muted);text-decoration:underline;font:inherit;cursor:pointer;margin-top:14px}
+.thanks{display:none;font-weight:700;color:var(--green);margin:12px 0 0}
+.thanks.show{display:block}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:30}
+.confetti i{position:absolute;top:-12px;width:10px;height:14px;border-radius:2px;animation:fall 1.15s linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(280deg);opacity:.2}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <span class="balloon b1" aria-hidden="true">🎈</span>
+  <span class="balloon b2" aria-hidden="true">🎈</span>
+  <span class="balloon b3" aria-hidden="true">🎉</span>
+  <span class="balloon b4" aria-hidden="true">⭐</span>
+  <div class="logo"><b aria-label="ARVI Happy"><i>A</i><i>R</i><i>V</i><i>I</i><i>★</i><i>H</i><i>A</i><i>P</i><i>P</i><i>Y</i></b><span>SALÓN DE CUMPLEAÑOS</span></div>
+  <p>Espacio seguro, risas y diversión asegurada</p>
+  <div class="pills"><span>🎂 Cumpleaños</span><span>🎠 Juegos</span><span>📸 Recuerdos</span></div>
+  <div class="mascot-wrap">
+    <img class="duo" id="kids" src="../happy/ninos.png" alt="Niño y niña de ARVI Happy">
+    <p class="bubble" id="bubble">¡Cuéntanos cómo estuvo la fiesta!</p>
+  </div>
+</header>
+
+<main>
+  <section id="locked" class="card lock hidden">
+    <div class="big" aria-hidden="true">🎈</div>
+    <h1>Tu fiesta aún no llega</h1>
+    <p class="lead" id="countdown">Esta sección se abre el día después de tu cumpleaños.</p>
+    <button class="link" id="preview-btn" type="button">Ver cómo se verá (vista previa)</button>
+  </section>
+
+  <div id="unlocked" class="hidden">
+    <section class="card">
+      <h1>¡La fiesta terminó y queremos el recuento! 🎉</h1>
+      <p class="lead">Cuéntanos cómo estuvo tu cumpleaños en ARVI Happy. Toma un minuto y nos ayuda a seguir celebrando mejor.</p>
+      <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+      <p class="meter-msg" id="meter-msg">Empieza por las estrellas.</p>
+    </section>
+
+    <form id="fb" novalidate>
+      <section class="card">
+        <h2>¿Cómo nos fue?</h2>
+        <div class="stars" id="stars" role="radiogroup" aria-label="Calificación de 1 a 5 estrellas"></div>
+        <p class="stars-msg" id="stars-msg" aria-live="polite"></p>
+      </section>
+
+      <section class="card">
+        <h2>¿Qué fue lo que más te gustó?</h2>
+        <p class="lead">Puedes marcar más de uno.</p>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="gusto" value="juegos"><span>🎠 Los juegos</span></label>
+          <label class="chip"><input type="checkbox" name="gusto" value="entretencion"><span>🥳 La entretención</span></label>
+          <label class="chip"><input type="checkbox" name="gusto" value="atencion"><span>👩‍💼 La atención</span></label>
+          <label class="chip"><input type="checkbox" name="gusto" value="espacio"><span>📍 El espacio</span></label>
+          <label class="chip"><input type="checkbox" name="gusto" value="todo"><span>❤️ Todo</span></label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Cuéntanos tu experiencia</h2>
+        <textarea id="texto" placeholder="¿Qué recordarán los niños de esta fiesta?" aria-label="Tu experiencia"></textarea>
+      </section>
+
+      <section class="card">
+        <h2>¿Nos recomendarías?</h2>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="reco" value="totalmente"><span>Sí, totalmente</span></label>
+          <label class="opt"><input type="radio" name="reco" value="si"><span>Sí</span></label>
+          <label class="opt"><input type="radio" name="reco" value="sugerencias"><span>Tengo algunas sugerencias</span></label>
+        </div>
+      </section>
+
+      <section class="card" style="border:0;background:none;padding:0">
+        <button class="btn blue full" type="submit">Enviar mi opinión 💌</button>
+        <p class="thanks" id="sent" role="status">¡Gracias! Recibimos tu opinión. 💛</p>
+      </section>
+    </form>
+
+    <section class="card photo">
+      <h2>📸 Muéstranos cómo lo pasaron</h2>
+      <p>Sube una foto de tu cumpleaños y ayúdanos a mostrarle a otras familias cómo es celebrar en ARVI Happy.</p>
+      <div class="preview" id="preview"><img id="preview-img" alt="Foto elegida para subir"></div>
+      <input type="file" id="file" accept="image/*" class="hidden">
+      <button class="btn yellow full" type="button" id="pick">Subir foto</button>
+      <button class="btn full hidden" type="button" id="send-photo" style="margin-top:14px">Enviar foto por correo</button>
+      <p class="thanks show hidden" id="photo-ok" style="color:var(--yellow)">¡Qué linda foto! Ahora envíala a ARVI Happy. 🎈</p>
+      <p class="thanks show hidden" id="photo-note" style="color:#fff"></p>
+    </section>
+
+    <section class="card ig">
+      <img class="duo" src="../happy/ninos.png" alt="">
+      <div>
+        <h2>Síguenos en Instagram</h2>
+        <p class="lead">Más fiestas, juegos y cumpleaños en @arvihappy.</p>
+        <a class="btn ig full" href="https://www.instagram.com/arvihappy/" target="_blank" rel="noopener">Seguir a @arvihappy</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>💛 ¿Nos ayudas con una reseña?</h2>
+      <p class="lead">Tu opinión pública ayuda a que otras familias nos encuentren.</p>
+      <a class="btn full" id="gbtn" href="https://www.google.com/search?q=ARVI+Happy+El+Bosque" target="_blank" rel="noopener" style="margin-top:12px">Dejar reseña en Google</a>
+    </section>
+
+    <section class="card end">
+      <h2>Gracias por celebrar con nosotros</h2>
+      <p>Esperamos volver a verte en tu próximo cumpleaños. 🎂</p>
+      <a class="btn ig" href="https://www.instagram.com/arvihappy/" target="_blank" rel="noopener">@arvihappy</a>
+    </section>
+  </div>
+</main>
+<div class="confetti" id="confetti" aria-hidden="true"></div>
+
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function confetti(){
+    if(reduce) return;
+    var box=document.getElementById('confetti');
+    var colors=['#ffc21a','#ee3b34','#2f8fe8','#5fb73a','#f58ab8','#fff'];
+    for(var n=0;n<32;n++){
+      var i=document.createElement('i');
+      i.style.left=(Math.random()*100)+'%';
+      i.style.background=colors[n%colors.length];
+      i.style.animationDelay=(Math.random()*.25)+'s';
+      box.appendChild(i);
+      setTimeout(function(el){el.remove()},1400,i);
+    }
+  }
+  function say(text){document.getElementById('bubble').textContent=text}
+  function cheer(){
+    var m=document.getElementById('kids');
+    m.classList.remove('cheer'); void m.offsetWidth; m.classList.add('cheer');
+  }
+
+  var params=new URLSearchParams(location.search), f=params.get('fecha');
+  var locked=document.getElementById('locked'), unlocked=document.getElementById('unlocked');
+  function show(open){locked.classList.toggle('hidden',open);unlocked.classList.toggle('hidden',!open)}
+  var open=true;
+  if(f&&/^\d{4}-\d{2}-\d{2}$/.test(f)){
+    var p=f.split('-'), d=new Date(+p[0],+p[1]-1,+p[2]+1);
+    if(new Date()<d){
+      open=false;
+      say('¡Todavía estoy inflando los globos!');
+      var days=Math.ceil((d-new Date())/864e5);
+      document.getElementById('countdown').textContent=days<=1
+        ?'¡Casi! Esta sección se abre mañana, cuando termine tu cumpleaños.'
+        :'Esta sección se abre en '+days+' días, cuando termine tu cumpleaños.';
+    }
+  }
+  show(open);
+  document.getElementById('preview-btn').onclick=function(){show(true);say('¡Cuéntame cómo estuvo la fiesta!')};
+
+  var msgs=['','Lo sentimos, queremos mejorar','Podemos hacerlo mejor','Estuvo bien','¡Qué bueno!','¡Eso es celebrar! 🎉'];
+  var talks=['','Quiero que la próxima sea mejor.','Podemos hacerlo aún más feliz.','¡Me alegra que lo pasaran bien!','¡Qué buena fiesta!','¡Eso es celebrar, síguenos en @arvihappy!'];
+  var box=document.getElementById('stars'), msg=document.getElementById('stars-msg'), rating=0, btns=[];
+  for(let i=1;i<=5;i++){
+    var b=document.createElement('button');b.type='button';b.textContent='★';
+    b.setAttribute('role','radio');b.setAttribute('aria-checked','false');b.setAttribute('aria-label',i+(i===1?' estrella':' estrellas'));
+    b.onclick=function(){
+      rating=i;paint();cheer();say(talks[i]);if(i>=4)confetti();
+      b.classList.add('pop');setTimeout(function(){b.classList.remove('pop')},450);progress();
+    };
+    box.appendChild(b);btns.push(b);
+  }
+  function paint(){btns.forEach(function(b,j){b.classList.toggle('on',j<rating);b.setAttribute('aria-checked',j===rating-1)});msg.textContent=msgs[rating]}
+
+  function progress(){
+    var score=0;
+    if(rating) score++;
+    if(document.querySelector('input[name=gusto]:checked')) score++;
+    if(document.getElementById('texto').value.trim()) score++;
+    if(document.querySelector('input[name=reco]:checked')) score++;
+    var labels=['Empieza por las estrellas.','¡Buen comienzo!','Ya se siente la fiesta.','Casi listo el recuento.','¡Opinión completa! 🎂'];
+    document.getElementById('meter').style.width=(12+score*22)+'%';
+    document.getElementById('meter-msg').textContent=labels[score];
+  }
+  document.getElementById('fb').addEventListener('change',function(){progress();cheer()});
+  document.getElementById('texto').addEventListener('input',progress);
+
+  document.getElementById('fb').addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!rating){msg.textContent='Elige cuántas estrellas nos das.';say('Primero elige las estrellas.');box.firstChild.focus();return}
+    var gustos=[].map.call(document.querySelectorAll('input[name=gusto]:checked'),function(c){return c.parentNode.textContent.trim()}).join(', ')||'(sin marcar)';
+    var rec=document.querySelector('input[name=reco]:checked');
+    var recTxt=rec?rec.parentNode.textContent.trim():'(sin responder)';
+    var cuerpo='Calificación: '+rating+' de 5 estrellas\n'
+      +'Lo que más le gustó: '+gustos+'\n'
+      +'¿Nos recomendaría?: '+recTxt+'\n'
+      +(f?'Fecha del cumpleaños: '+f+'\n':'')
+      +'\nExperiencia:\n'+(document.getElementById('texto').value.trim()||'(sin comentario)');
+    openMail('Opinión cumpleaños ARVI Happy ('+rating+' estrellas)',cuerpo);
+    var s=document.getElementById('sent');
+    s.textContent='Se abrió tu correo con la opinión lista. Presiona "Enviar" en tu app de correo para que llegue a ARVI Happy. 💛';
+    s.classList.add('show');
+    say('¡Gracias! Nos vemos en @arvihappy.');
+    confetti();cheer();
+  });
+
+  var MAIL='ventas@arvihappy.com';
+  function openMail(asunto,cuerpo){
+    var a=document.createElement('a');
+    a.href='mailto:'+MAIL+'?subject='+encodeURIComponent(asunto)+'&body='+encodeURIComponent(cuerpo);
+    a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();
+  }
+
+  document.getElementById('send-photo').onclick=function(){
+    var fl=file.files[0]; if(!fl)return;
+    var note=document.getElementById('photo-note');
+    var texto='Foto de mi cumpleaños en ARVI Happy. Enviar a '+MAIL;
+    if(navigator.canShare&&navigator.canShare({files:[fl]})){
+      navigator.share({files:[fl],title:'Foto cumpleaños ARVI Happy',text:texto}).catch(function(){});
+      note.textContent='Elige tu app de correo y envíala a '+MAIL+'.';
+    }else{
+      openMail('Foto de cumpleaños ARVI Happy','Hola ARVI Happy, les envío la foto de mi cumpleaños.\n\n(Adjunta la foto en este correo antes de enviar.)');
+      note.textContent='Se abrió tu correo: adjunta la foto ("'+fl.name+'") y presiona Enviar.';
+    }
+    note.classList.remove('hidden');
+  };
+
+  var file=document.getElementById('file');
+  document.getElementById('pick').onclick=function(){file.click()};
+  file.onchange=function(){
+    var fl=file.files[0]; if(!fl)return;
+    var r=new FileReader();
+    r.onload=function(){
+      document.getElementById('preview-img').src=r.result;
+      document.getElementById('preview').classList.add('show');
+      document.getElementById('photo-ok').classList.remove('hidden');
+      document.getElementById('send-photo').classList.remove('hidden');
+      document.getElementById('pick').textContent='Cambiar foto';
+      say('¡Qué linda foto de la fiesta!');
+      cheer();
+    };
+    r.readAsDataURL(fl);
+  };
+})();
+</script>
+</body>
+</html>
